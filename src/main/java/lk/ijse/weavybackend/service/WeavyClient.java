@@ -1,4 +1,4 @@
-package lk.ijse.weavybackend;
+package lk.ijse.weavybackend.service;
 
 import okhttp3.*;
 import java.io.IOException;
@@ -65,9 +65,5 @@ public class WeavyClient {
         try (Response response = client.newCall(request).execute()) {
             System.out.println("Delete User Response: " + response.body().string());
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        createUser("user123", "John Doe");
     }
 }

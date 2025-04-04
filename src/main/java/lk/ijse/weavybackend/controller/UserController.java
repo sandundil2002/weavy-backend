@@ -1,6 +1,6 @@
 package lk.ijse.weavybackend.controller;
 
-import lk.ijse.weavybackend.WeavyClient;
+import lk.ijse.weavybackend.service.WeavyClient;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
