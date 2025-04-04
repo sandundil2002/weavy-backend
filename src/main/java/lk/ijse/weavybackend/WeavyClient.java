@@ -21,6 +21,52 @@ public class WeavyClient {
         }
     }
 
+    public static void listUsers() throws IOException {
+        Request request = new Request.Builder()
+                .url(BASE_URL)
+                .get()
+                .addHeader("Authorization", "Bearer " + API_TOKEN)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println("List Users Response: " + response.body().string());
+        }
+    }
+
+    public static void getUser(String uid) throws IOException {
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/" + uid)
+                .get()
+                .addHeader("Authorization", "Bearer " + API_TOKEN)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println("Get User Response: " + response.body().string());
+        }
+    }
+
+    public static void updateUser(String uid, String name) throws IOException {
+        String json = "{\"name\":\"" + name + "\"}";
+        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/" + uid)
+                .put(body)
+                .addHeader("Authorization", "Bearer " + API_TOKEN)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println("Update User Response: " + response.body().string());
+        }
+    }
+
+    public static void deleteUser(String uid) throws IOException {
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/" + uid)
+                .delete()
+                .addHeader("Authorization", "Bearer " + API_TOKEN)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println("Delete User Response: " + response.body().string());
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         createUser("user123", "John Doe");
     }
